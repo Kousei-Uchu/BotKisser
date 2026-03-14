@@ -76,6 +76,7 @@
     "panel_embed_title": "Need Help?",
     "panel_embed_description": "Click below to open a ticket.",
     "already_open_message": "You already have an open ticket.",
+    "panel_button_label": "Open Ticket",
 
     "commands": {
       "ticket": {
@@ -151,7 +152,7 @@
     "mute_role": 1071601574658453604,
     "booster_role_id": 1355475653109092483,
     "lockdown_channels_exclude": [],
-    "lockdown_categories_exclude": [ 1071601578181664916 ],
+    "lockdown_categories_exclude": [ 1071601577716101183, 1071601578181664912 ],
     "mod_log_channel_id": 1071601577716101188,
     "warn_message": "You have been warned with the message: {reason}",
     "kick_message": "You have been kicked from The Den with the message {reason} - You may reapply to join using this invite: https://discord.gg/3HTyFrjRzp.",
@@ -321,31 +322,6 @@
     "fireboard_channel": 1325682093212041278,
     "fireboard_threshold": 5,
     "commands": {
-      "afk set": {
-        "enabled": true,
-        "required_roles": [ "@everyone" ],
-        "permissions": []
-      },
-      "afk ignore": {
-        "enabled": true,
-        "required_roles": [ "@everyone" ],
-        "permissions": []
-      },
-      "afk ignored": {
-        "enabled": true,
-        "required_roles": [ "@everyone" ],
-        "permissions": []
-      },
-      "afk reset": {
-        "enabled": true,
-        "required_roles": [ "@everyone" ],
-        "permissions": []
-      },
-      "afk list": {
-        "enabled": true,
-        "required_roles": [ "@everyone" ],
-        "permissions": []
-      },
       "roll": {
         "enabled": true,
         "required_roles": [ "@everyone" ],
@@ -383,26 +359,26 @@
     "channel_id": "1325682093212041278"
   },
   "logging": {
-    "message_delete_channel": "1071601577716101189",
-    "message_edit_channel": "1071601577716101189",
-    "bulk_delete_channel": "1071601577716101189",
-    "image_delete_channel": "1071601577716101189",
+    "message_delete_channel": "1467880725910126665",
+    "message_edit_channel": "1467880725910126665",
+    "bulk_delete_channel": "1467880725910126665",
+    "image_delete_channel": "1467880725910126665",
     "member_join_channel": "1337308553240776765",
     "member_leave_channel": "1337308553240776765",
     "member_role_add_channel": "1337308553240776765",
     "member_role_remove_channel": "1337308553240776765",
     "member_ban_channel": "1071601577716101188",
     "member_unban_channel": "1071601577716101188",
-    "role_create_channel": "1337308737991606316",
-    "role_delete_channel": "1337308737991606316",
-    "role_update_channel": "1337308737991606316",
-    "channel_create_channel": "1337308737991606316",
-    "channel_update_channel": "1337308737991606316",
-    "channel_delete_channel": "1337308737991606316",
-    "emoji_create_channel": "1337308737991606316",
-    "emoji_delete_channel": "1337308737991606316",
-    "voice_join_channel": "1071601577716101189",
-    "voice_leave_channel": "1071601577716101189"
+    "role_create_channel": "1482327315756220486",
+    "role_delete_channel": "1482327315756220486",
+    "role_update_channel": "1482327315756220486",
+    "channel_create_channel": "1482327315756220486",
+    "channel_update_channel": "1482327315756220486",
+    "channel_delete_channel": "1482327315756220486",
+    "emoji_create_channel": "1482327315756220486",
+    "emoji_delete_channel": "1482327315756220486",
+    "voice_join_channel": "1467880725910126665",
+    "voice_leave_channel": "1467880725910126665"
   }
 }
 
