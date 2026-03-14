@@ -1,0 +1,6 @@
+data/
+responses.xlsx
+bot.log
+venv/
+__pycache__/
+.env

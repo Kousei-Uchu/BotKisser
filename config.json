@@ -1,0 +1,408 @@
+{
+  "leveling": {
+    "enabled": true,
+    "level_up": {
+      "enabled": true,
+      "message": "Congratulations, {user} has reached level {level}!",
+      "channel_id": 1305010592792186923
+    },
+    "xp_gain": {
+      "enabled": true,
+      "min_xp": 10,
+      "max_xp": 20
+    },
+    "level_roles": {
+      "25": 1303238163803799563
+    },
+    "commands": {
+      "level": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "setlevel": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "addxp": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "removexp": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "grantlevel": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "revokelevel": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "leaderboard": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      }
+    }
+  },
+  "sticky": {
+    "commands": {
+      "stick": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "unstick": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      }
+    }
+  },
+  "ticket": {
+    "category_id": 1071601578181664916,
+    "panel_channel_id": 1297039613038166016,
+    "staff_roles": [ 1071601574721364039 ],
+    "ticket_embed_title": "Support Ticket",
+    "transcript_log_channel_id": 1071601577716101187,
+    "ticket_embed_desc": "Staff will be with you shortly.",
+    "panel_embed_title": "Need Help?",
+    "panel_embed_description": "Click below to open a ticket.",
+    "already_open_message": "You already have an open ticket.",
+
+    "commands": {
+      "ticket": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "ticket_button": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "addmember": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "removemember": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "close_ticket": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      }
+    }
+  },
+  "analytics": {
+    "enabled": true,
+    "commands": {
+      "activity": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "xpstats": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      }
+    }
+  },
+  "intro": {
+    "enabled": true,
+    "channel_id": 1071601575744766038,
+    "excel_file_path": "/home/kousei/code/The-Den-Bot/responses.xlsx",
+    "age_roles": {
+      "13-15": 1332495980905500775,
+      "16-17": 1332496017215455264,
+      "18-20": 1332496058357649478,
+      "21-30": 1332496088686657536,
+      "31-40": 1332496120076697742,
+      "40+": 1332496159809470555
+    },
+    "commands": {
+      "intro": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "refresh_intros": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      }
+    }
+  },
+  "moderation": {
+    "enabled": true,
+    "modlog_channel": 1071601575744766038,
+    "mute_role": 1071601574658453604,
+    "booster_role_id": 1355475653109092483,
+    "lockdown_channels_exclude": [],
+    "lockdown_categories_exclude": [ 1071601578181664916 ],
+    "mod_log_channel_id": 1071601577716101188,
+    "warn_message": "You have been warned with the message: {reason}",
+    "kick_message": "You have been kicked from The Den with the message {reason} - You may reapply to join using this invite: https://discord.gg/3HTyFrjRzp.",
+    "ban_message": "You have been banned {duration} with the message: {reason}.",
+    "mute_message": "You have been muted {duration} with the message: {reason}",
+    "unmute_message": "You have been unmuted: {reason}",
+    "clean_message": "Cleaned up my messages!",
+    "commands": {
+      "ban": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "case": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "clean": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "clearnotes": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "deafen": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "delnote": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "delwarn": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "duration": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "editnote": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "fireboard": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "ignored": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "kick": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "lock": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "lockdown": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "members": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "moderations": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "modlogs": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "modstats": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "mute": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "note": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "notes": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "reason": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "rolepersist": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "softban": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "temprole": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "unban": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "undeafen": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "unlock": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "unmute": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "warn": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "warnings": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      }
+    }
+  },
+  "fun": {
+    "fireboard_channel": 1325682093212041278,
+    "fireboard_threshold": 5,
+    "commands": {
+      "afk set": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "afk ignore": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "afk ignored": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "afk reset": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "afk list": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "roll": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "flip": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "rps": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "dadjoke": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "cat": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      },
+      "dog": {
+        "enabled": true,
+        "required_roles": [ "@everyone" ],
+        "permissions": []
+      }
+    }
+  },
+  "fireboard": {
+    "required_reacts": 5,
+    "channel_id": "1325682093212041278"
+  },
+  "logging": {
+    "message_delete_channel": "1071601577716101189",
+    "message_edit_channel": "1071601577716101189",
+    "bulk_delete_channel": "1071601577716101189",
+    "image_delete_channel": "1071601577716101189",
+    "member_join_channel": "1337308553240776765",
+    "member_leave_channel": "1337308553240776765",
+    "member_role_add_channel": "1337308553240776765",
+    "member_role_remove_channel": "1337308553240776765",
+    "member_ban_channel": "1071601577716101188",
+    "member_unban_channel": "1071601577716101188",
+    "role_create_channel": "1337308737991606316",
+    "role_delete_channel": "1337308737991606316",
+    "role_update_channel": "1337308737991606316",
+    "channel_create_channel": "1337308737991606316",
+    "channel_update_channel": "1337308737991606316",
+    "channel_delete_channel": "1337308737991606316",
+    "emoji_create_channel": "1337308737991606316",
+    "emoji_delete_channel": "1337308737991606316",
+    "voice_join_channel": "1071601577716101189",
+    "voice_leave_channel": "1071601577716101189"
+  }
+}
+
