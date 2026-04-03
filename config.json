@@ -356,7 +356,7 @@
   },
   "fireboard": {
     "required_reacts": 5,
-    "channel_id": "1325682093212041278"
+    "channel_id": 1325682093212041278
   },
   "logging": {
     "message_delete_channel": "1467880725910126665",

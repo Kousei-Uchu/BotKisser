@@ -21,10 +21,12 @@ class SQLHandler:
         self.conn.execute("PRAGMA journal_mode=WAL;")
         self.conn.execute("PRAGMA synchronous=NORMAL;")
 
-    def execute(self, query, params=()):
+    def execute(self, query, params=(), return_rowcount=False):
         with self.lock:
             self.cursor.execute(query, params)
             self.conn.commit()
+            if return_rowcount:
+                return self.cursor.rowcount
 
     def executemany(self, query, params):
         with self.lock:

@@ -17,6 +17,7 @@ class Sticky(commands.Cog):
         self.sticky_messages = {}       # channel_id -> discord.Message
         self.pending_updates = {}       # channel_id -> asyncio.Task
         self.inactivity_time = self.config.get("inactivity_time", 5)  # seconds
+        self.update_versions = {}  # channel_id -> int
 
         self.command_configs = {
             'stick': {'enabled': True, 'required_roles': ['@everyone'], 'permissions': ['manage_messages']},
@@ -43,24 +44,44 @@ class Sticky(commands.Cog):
                 self.db.set(channel_id, msg.id, content)
             self.sticky_messages[channel_id] = msg
 
-    async def _debounced_update(self, channel: discord.TextChannel):
+    async def _debounced_update(self, channel: discord.TextChannel, version: int):
         """Wait until channel is inactive, then update sticky message."""
-        await asyncio.sleep(self.inactivity_time)
         cid = str(channel.id)
-        sticky = self.db.get(cid)
-        if not sticky:
-            return
 
         try:
-            old_msg = await channel.fetch_message(sticky["message_id"])
-            await old_msg.delete()
-        except discord.NotFound:
-            pass
+            await asyncio.sleep(self.inactivity_time)
 
-        new_msg = await channel.send(sticky["content"])
-        self.db.set(cid, new_msg.id, sticky["content"])
-        self.sticky_messages[cid] = new_msg
-        self.pending_updates.pop(cid, None)
+            # ❗ ensure this is the latest task
+            if self.update_versions.get(cid) != version:
+                return
+
+            sticky = self.db.get(cid)
+            if not sticky:
+                return
+
+            # ✅ use memory instead of fetch
+            old_msg = self.sticky_messages.get(cid)
+            if old_msg:
+                try:
+                    await old_msg.delete()
+                except discord.NotFound:
+                    pass
+
+            # ❗ check AGAIN before sending (race safety)
+            if self.update_versions.get(cid) != version:
+                return
+
+            new_msg = await channel.send(sticky["content"])
+            self.db.set(cid, new_msg.id, sticky["content"])
+            self.sticky_messages[cid] = new_msg
+
+        except asyncio.CancelledError:
+            return
+
+        finally:
+            # only remove if it's THIS task
+            if self.pending_updates.get(cid) is asyncio.current_task():
+                self.pending_updates.pop(cid, None)
 
     # ------------------------
     # COMMANDS
@@ -143,17 +164,23 @@ class Sticky(commands.Cog):
             return
 
         cid = str(message.channel.id)
+
         if cid in self.sticky_messages and message.id != self.sticky_messages[cid].id:
-            # update last activity in DB
             self.db.update_activity(cid)
 
-            # cancel any pending update task
+            # 🔢 increment version
+            self.update_versions[cid] = self.update_versions.get(cid, 0) + 1
+            version = self.update_versions[cid]
+
+            # ❌ cancel old task
             task = self.pending_updates.get(cid)
             if task and not task.done():
                 task.cancel()
 
-            # schedule a new debounced update
-            self.pending_updates[cid] = asyncio.create_task(self._debounced_update(message.channel))
+            # 🆕 create new task with version
+            self.pending_updates[cid] = asyncio.create_task(
+                self._debounced_update(message.channel, version)
+            )
 
 
 async def setup(bot):

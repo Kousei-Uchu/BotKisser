@@ -83,10 +83,10 @@ class Logging(commands.Cog):
         channel_id = self.logging_config.get('bulk_delete_channel')
         if not channel_id:
             return
-        displayed_messages = messages[:20]
+        displayed_messages = messages[:50]
         description_lines = [f"- {msg.content}" for msg in displayed_messages if msg.content]
-        if len(messages) > 20:
-            description_lines.append(f"...and {len(messages) - 20} more messages.")
+        if len(messages) > 50:
+            description_lines.append(f"...and {len(messages) - 50} more messages.")
         embed = Embed(
             title="Bulk Message Delete",
             description="**Deleted Messages:**\n" + "\n".join(description_lines),
@@ -321,19 +321,9 @@ class Logging(commands.Cog):
             removed = []
             changed = []
 
-            perms = [
-                'add_reactions', 'administrator', 'attach_files', 'ban_members', 'change_nickname',
-                'connect', 'create_instant_invite', 'deafen_members', 'embed_links', 'kick_members',
-                'manage_channels', 'manage_emojis', 'manage_guild', 'manage_messages', 'manage_nicknames',
-                'manage_roles', 'manage_webhooks', 'mention_everyone', 'move_members', 'mute_members',
-                'priority_speaker', 'read_message_history', 'read_messages', 'send_messages',
-                'send_tts_messages', 'speak', 'use_external_emojis', 'use_slash_commands',
-                'view_audit_log', 'view_channel',
-            ]
-
-            for perm in perms:
-                old_val = getattr(old, perm)
+            for perm, old_val in old:
                 new_val = getattr(new, perm)
+
                 if old_val != new_val:
                     if old_val is None:
                         added.append(f"{perm}={new_val}")

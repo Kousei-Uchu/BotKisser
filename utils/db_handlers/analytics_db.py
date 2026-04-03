@@ -247,3 +247,40 @@ class AnalyticsDB:
         ORDER BY count DESC
         LIMIT 1
         """, (guild_id,))
+
+    def cleanup_status_changes(self, days=30):
+        cutoff = (datetime.datetime.utcnow() - datetime.timedelta(days=days)).isoformat()
+
+        query = """
+            DELETE FROM status_changes
+            WHERE timestamp < ?
+            AND rowid NOT IN (
+                SELECT rowid FROM (
+                    -- keep latest per user
+                    SELECT rowid
+                    FROM status_changes s1
+                    WHERE timestamp = (
+                        SELECT MAX(timestamp)
+                        FROM status_changes s2
+                        WHERE s2.guild_id = s1.guild_id
+                        AND s2.user_id = s1.user_id
+                    )
+
+                    UNION
+
+                    -- keep latest per transition
+                    SELECT rowid
+                    FROM status_changes s1
+                    WHERE timestamp = (
+                        SELECT MAX(timestamp)
+                        FROM status_changes s2
+                        WHERE s2.guild_id = s1.guild_id
+                        AND s2.user_id = s1.user_id
+                        AND s2.from_status = s1.from_status
+                        AND s2.to_status = s1.to_status
+                    )
+                )
+            )
+        """
+
+        return self.db.execute(query, (cutoff,), return_rowcount=True)

@@ -9,7 +9,7 @@ class Listeners(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.author.bot or message.guild.id != 1071601574616498248:
+        if message.author.bot or message.guild is None or message.guild.id != 1071601574616498248:
             return
 
         leveling_cog  = self.bot.get_cog('Leveling')

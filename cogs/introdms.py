@@ -238,7 +238,7 @@ class QNACog(commands.Cog):
             sheet.title = "Responses"
             sheet.append(self.column_headers)
 
-        sheet = workbook["Responses"]
+        sheet = workbook["Responses"] or workbook.active
 
         row_data = [member.name]
         for qdata in self.QUESTION_DATA:

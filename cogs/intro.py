@@ -63,7 +63,7 @@ class IntroSystem(commands.Cog):
 
         def load_excel():
             wb = openpyxl.load_workbook(self.excel_path)
-            ws = wb.active
+            ws = wb["Responses"] or wb.active
             return wb, ws
 
         try:

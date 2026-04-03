@@ -306,3 +306,25 @@ class ModerationDB:
             "DELETE FROM locked_channels WHERE guild_id = ?",
             (guild_id,)
         )
+
+    def clean_warnings_duplicates(self):
+        query = """
+            DELETE FROM warnings
+            WHERE id NOT IN (
+                SELECT MIN(id)
+                FROM warnings
+                GROUP BY guild_id, user_id, reason, moderator_id
+            )
+        """
+        return self.sql.execute(query, return_rowcount=True)
+
+    def clean_modlogs_duplicates(self):
+        query = """
+            DELETE FROM modlogs
+            WHERE id NOT IN (
+                SELECT MIN(id)
+                FROM modlogs
+                GROUP BY case_id, guild_id, action, user_id, moderator_id
+            )
+        """
+        return self.sql.execute(query, return_rowcount=True)
