@@ -49,7 +49,7 @@ class AcceptButton(BaseQNAButton):
 
     async def callback(self, interaction: Interaction):
         cog = self.view.cog
-        intro_cog = self.bot.cogs.smth
+        intro_cog = intro_cog = self.bot.get_cog('IntroSystem')
         user = await self.get_user_from_embed(interaction)
         if not user:
             await interaction.response.send_message("Could not identify user.", ephemeral=True)
@@ -59,7 +59,7 @@ class AcceptButton(BaseQNAButton):
         try:
             await user.add_roles(role)
             await user.send("Your application has been accepted! Enjoy The Den!")
-            await intro_cog.on_member_join()
+            await intro_cog.on_member_join(member: user)
         except discord.Forbidden:
             await interaction.response.send_message("Could not DM or add roles to the user.", ephemeral=True)
 
