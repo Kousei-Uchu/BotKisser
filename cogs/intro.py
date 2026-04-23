@@ -103,6 +103,21 @@ class IntroSystem(commands.Cog):
         if age < 31: return "21-30"
         if age < 41: return "31-40"
         return "40+"
+        
+    async def on_member_join(self, member):
+        print(f"[on_member_join] Member joined: {member}")
+        if not self.config.get('enabled', True):
+            print("[on_member_join] Intro system is disabled.")
+            return
+        self.init_excel()
+        if not self.worksheet:
+            print("[on_member_join] Worksheet not loaded.")
+            return
+        await self.process_intro(member)
+        message_content = f"**Welcome to The Den {member.mention}! We're so glad to have you!**\n\n<@&1296350497929695232> come say hi! Some more info about them is in <#1071601575744766038>!"
+        channel_id = 1071601576252289158
+        channel = self.bot.get_channel(channel_id)
+        await channel.send(content=message_content)
 
     # ==================== Intro Processing ====================
     async def process_intro(self, member: discord.Member, row_num: int = None):
