@@ -155,7 +155,7 @@ class IntroSystem(commands.Cog):
 
         # Include all non-empty fields from Excel except skipped
         for key, value in user_record.items():
-            if value and str(value).lower() not in ["", "n/a", "skipped"]:
+            if value and str(value).lower() not in ["", "n/a", "skipped"] and key not in ["Discovery Source", "Age", "Birthday", "Join Goals", "Username"]:
                 embed.add_field(name=key, value=value, inline=False)
 
         # Age roles
