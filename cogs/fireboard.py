@@ -1,5 +1,6 @@
 ﻿import discord
 from discord.ext import commands
+from discord import app_commands
 
 from utils.db_handlers.fireboard_db import FireboardDB
 from utils.config_manager import ConfigManager

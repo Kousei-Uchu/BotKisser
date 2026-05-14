@@ -17,6 +17,10 @@ class Maintenance(commands.Cog):
 
         self.analytics_db = AnalyticsDB()
 
+    def check_command_permissions(self, interaction: discord.Interaction):
+        # For now, only allow users with manage_guild permission to run this command
+        return interaction.user.guild_permissions.manage_guild
+
     @app_commands.command(
         name="cleanup_db",
         description="Clean up old entries from the database"
