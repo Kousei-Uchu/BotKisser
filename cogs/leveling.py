@@ -122,10 +122,23 @@ class Leveling(commands.Cog):
             return await interaction.response.send_message("No data found.", ephemeral=True)
 
         embed = Embed(title=f"{interaction.guild.name} Leaderboard", color=discord.Color.gold())
-        for i, row in enumerate(top, start=1):
+        position = 1
+
+        for row in top:
             member = interaction.guild.get_member(int(row['user_id']))
-            name = member.display_name if member else f"<@{row['user_id']}>"
-            embed.add_field(name=f"{i}. {name}", value=f"Level {row['level']} ({row['xp']} XP)", inline=False)
+
+            if not member:
+                continue
+
+            name = member.display_name
+
+            embed.add_field(
+                name=f"{position}. {name}",
+                value=f"Level {row['level']} ({row['xp']} XP)",
+                inline=False
+            )
+
+            position += 1
 
         await interaction.response.send_message(embed=embed)
 

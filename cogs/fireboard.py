@@ -87,7 +87,7 @@ class Fireboard(commands.Cog):
         users = await self.count_reactors(message, emoji)
         count = len(users)
 
-        record = self.db.get_message(message.id)
+        record = (self.db.get_message(message.id) or self.db.get_original_from_repost(message.id))
 
         if record:
             board_msg = await fireboard_channel.fetch_message(record["repost_id"])
@@ -112,8 +112,8 @@ class Fireboard(commands.Cog):
             for uid in users:
                 self.db.add_stat(message.id, uid)
 
-    @commands.command()
-    async def fireleaderboard(self, ctx):
+    @app_commands.command(name="fireleaderboard")
+    async def fireleaderboard(self, interaction: discord.Interaction):
         data = self.db.get_leaderboard()
 
         embed = discord.Embed(
@@ -121,17 +121,25 @@ class Fireboard(commands.Cog):
             color=discord.Color.orange()
         )
 
-        for i, row in enumerate(data, 1):
+        position = 1
+
+        for row in data:
             user = self.bot.get_user(row["user_id"])
-            name = user.name if user else f"User {row['user_id']}"
+
+            if not user:
+                continue
+
+            name = user.name
 
             embed.add_field(
-                name=f"#{i} {name}",
+                name=f"#{position} {name}",
                 value=f"{row['fires']} fires",
                 inline=False
             )
 
-        await ctx.send(embed=embed)
+            position += 1
+
+        await interaction.response.send_message(embed=embed)
 
 
 async def setup(bot):
